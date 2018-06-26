@@ -1,16 +1,10 @@
 var express = require('express');
-var app = express();
+const path = require('path');
+const PORT = process.env.PORT || 5000;
 
-app.set('port', (parseInt(process.env.PORT, 10) || 5000));
-
-app.use(express.static(__dirname + '/dist'));
-
-app.get('/', (req, res) => {
-  return handle(req, res);
-});
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+express()
+  .set('port', PORT)
+  .use(express.static(path.join(__dirname, 'dist')))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
