@@ -9,9 +9,10 @@
               <label class="view-toggles__title">Change view</label>
               <ul class="view-toggles__list">
                 <li
-                  v-for="viewToggle in viewToggles"
+                  v-for="(viewToggle, index) in viewToggles"
                   class="view-toggles__item"
                   :class="{active: isViewActive(viewToggle)}"
+                  :key="`viewToggle-${index}`"
                 >
                   <button class="view-toggle" @click="changeView(viewToggle)">{{ viewToggle }}</button>
                 </li>
@@ -27,10 +28,10 @@
           <aside>
             <div class="products__filters filters filters--aside">
               <h2 class="filters__title">Filter by:</h2>
-              <div class="filter-group" v-for="filterGroup in filters">
+              <div class="filter-group" v-for="(filterGroup, index) in filters" :key="`filterGroup-${index}`">
                 <h3 class="filter-group__title">{{ filterGroup.name }}</h3>
                 <ul class="filter-list">
-                  <li class="filter-list__item filter" v-for="filter in filterGroup.items">
+                  <li class="filter-list__item filter" v-for="(filter, index) in filterGroup.items" :key="`filter-${index}`">
                     <input
                       type="checkbox"
                       :checked="filter.isActive"
